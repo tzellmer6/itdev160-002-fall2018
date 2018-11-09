@@ -1,19 +1,26 @@
 import React from "react";
 import { Link } from "gatsby";
+import Layout from '../components/Layout'
+import List from '../components/List'
+import ListItem from '../components/List/ListItem'
 
-import Layout from "../components/layout/layout";
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <ul>
+    <List>
       {data.allContentfulBlogPost.edges.map(edge => (
-        <li key={edge.node.id}>
-          <Link to={edge.node.slug}>{edge.node.title}</Link>
-          <img src={edge.node.heroImage.fluid.src} alt="" />
-          <div>{edge.node.body.childMarkdownRemark.excerpt}</div>
-        </li>
+        <ListItem key={edge.node.id}>
+          <ListItem.Heading>
+            <Link to={edge.node.slug}>{edge.node.title}</Link>
+          </ListItem.Heading>
+
+          <ListItem.Image src={edge.node.heroImage.fluid.src} />
+          <ListItem.Text>
+            {edge.node.body.childMarkdownRemark.excerpt}
+          </ListItem.Text>
+        </ListItem>
       ))}
-    </ul>
+    </List>
   </Layout>
 );
 

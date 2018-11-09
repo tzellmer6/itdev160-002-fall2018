@@ -1,38 +1,38 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import Layout from '../components/layout'
+import Layout from "../components/layout/layout";
 
 class BlogPost extends Component {
   render() {
     const { title, body } = this.props.data.contentfulBlogPost;
     return (
-      <layout>
+      <Layout>
         <h1>{title}</h1>
         <div
-          dangerouslySetInnerHTML= {{ _html: body.childMarkdownRemark.html}}>
+          dangerouslySetInnerHTML={{ __html: body.childMarkdownRemark.html }}>
         </div>
-      </layout>
+      </Layout>
     );
   }
 }
 
 BlogPost.propTypes = {
   data: PropTypes.object.isRequired
-}
+};
 
 export default BlogPost;
 
 export const pageQuery = graphql`
-query blogPostQuery($slug: String!) {
-contentfulBlogPost(slug: { eq: $slug }) {
-  title
-  slug
-  body{
-    childMarkdownRemark{
-      html
+  query blogPostQuery($slug: String!) {
+    contentfulBlogPost(slug: { eq: $slug }) {
+      title
+      slug
+      body {
+        childMarkdownRemark {
+          html
+        }
       }
     }
   }
-}
-`
+`;

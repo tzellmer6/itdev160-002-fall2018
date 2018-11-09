@@ -1,17 +1,15 @@
-import React from 'react';
-import { Link } from 'gatsby';
+import React from "react";
+import { Link } from "gatsby";
 
-import Layout from '../components/layout';
+import Layout from "../components/layout/layout";
 
-const IndexPage = ({data}) => (
+const IndexPage = ({ data }) => (
   <Layout>
     <ul>
       {data.allContentfulBlogPost.edges.map(edge => (
-        <li>
-          <Link to={edge.node.slug} key={edge.node.id}>
-            {edge.node.title}
-          </Link>
-          <img src={edge.node.heroImage.fluid.scr} alt="" />
+        <li key={edge.node.id}>
+          <Link to={edge.node.slug}>{edge.node.title}</Link>
+          <img src={edge.node.heroImage.fluid.src} alt="" />
           <div>{edge.node.body.childMarkdownRemark.excerpt}</div>
         </li>
       ))}
@@ -19,12 +17,12 @@ const IndexPage = ({data}) => (
   </Layout>
 );
 
-export default IndexPage
+export default IndexPage;
 
-export const query = graphql `
+export const query = graphql`
   query pageQuery {
     allContentfulBlogPost(
-      filter: { node_locale: { eq: "en-US"} }
+      filter: { node_locale: { eq: "en-US" } }
       sort: { fields: [publishDate], order: DESC }
     ) {
       edges {

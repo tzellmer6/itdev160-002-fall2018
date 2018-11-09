@@ -4,9 +4,9 @@ import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
 import { theme } from '../../themes/drab'
-import GlobalStyle from '../style/global-style'
+import GlobalStyle from '../GlobalStyle'
 
-import Header from '../header/header'
+import Header from '../Header'
 //import './layout.css'
 
 const Content = styled.div`

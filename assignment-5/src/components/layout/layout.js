@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 import styled, { ThemeProvider } from 'styled-components'
-import {theme} from '../themes/drab'
+import { theme } from '../../themes/drab'
+import GlobalStyle from '../style/global-style'
 
-import Header from './header'
-import './layout.css'
+import Header from '../header/header'
+//import './layout.css'
 
 const Content = styled.div`
   margin: 0 auto;
@@ -19,16 +20,16 @@ const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
     <StaticQuery
       query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
+        query SiteTitleQuery {
+          site {
+            siteMetadata {
+              title
+            }
           }
         }
-      }
     `}
       render={data => (
-        <>
+        <div>
           <Helmet
             title={data.site.siteMetadata.title}
             meta={[
@@ -38,18 +39,13 @@ const Layout = ({ children }) => (
           >
             <html lang="en" />
           </Helmet>
+          <GlobalStyle />
           <Header siteTitle={data.site.siteMetadata.title} />
-          <div
-            style={{
-              margin: '0 auto',
-              maxWidth: 960,
-              padding: '0px 1.0875rem 1.45rem',
-              paddingTop: 0,
-            }}
-          >
+          <Content>
             {children}
-          </div>
-        </>
+          </Content>
+
+        </div>
       )}
     />
   </ThemeProvider>

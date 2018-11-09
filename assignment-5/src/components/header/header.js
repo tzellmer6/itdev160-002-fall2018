@@ -3,7 +3,8 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 const Outer = styled.div`
-  background-color: ${props => props.theme.header.backgroundColor};
+  /* background: ${props => props.theme.header.backgroundColor}; */
+  background: green;
   margin-bottom: 1.45rem;
 `
 

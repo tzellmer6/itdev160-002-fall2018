@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
-import Layout from "../components/layout/layout";
+import Layout from "../components/Layout";
 
 class BlogPost extends Component {
   render() {
